@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+
 import Search from "./components/Search";
 import FoodList from "./components/FoodList";
 import Nav from "./components/Nav";
@@ -6,6 +8,9 @@ import "./App.css";
 import Container from "./components/Container";
 import InnerContainer from "./components/InnerContainer";
 import FoodDetails from "./components/FoodDetails";
+
+import Favorites from './pages/Favorites'; // new page you'll create
+
 
 function App() {
   //becouse data is array we need to save the use State in an array to use it in any comp
@@ -19,32 +24,33 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      {/* Pass the foodData and setFoodData as props */}
-      <Search foodData={foodData} setFoodData={setFoodData} />
-      {/* //Pass this data into foodList component to display foods
-      {foodData.map((food)=>{
-        <h1>{food.title}</h1>
-      })} */}
-
-      {/* Container component to structure other components */}
-      <Container>
-        {/* InnerContainer will render foodlist component */}
-        <InnerContainer>
-          {/* Passing set food Id here so the Fodd list will have access to the state id */}
-          {/* When you nest components you need to render it inside the cont component */}
-          {/* Foodlist become children component and placed on the left*/}
-          <FoodList setFoodId={setFoodId} foodData={foodData} />
-        </InnerContainer>
-
-        <InnerContainer>
-          {/* Foodlist become children component and placed on the right*/}
-
-          <FoodDetails foodId={foodId} />
-        </InnerContainer>
-      </Container>
-    </div>
-  );
+     <Routes>
+  <Route
+    path="/"
+    element={
+      <>
+        <Search foodData={foodData} setFoodData={setFoodData} />
+        <Container>
+          <InnerContainer>
+            <FoodList setFoodId={setFoodId} foodData={foodData} />
+          </InnerContainer>
+          <InnerContainer>
+            <FoodDetails foodId={foodId} />
+          </InnerContainer>
+        </Container>
+      </>
+      
+    }
+  />
+  
+  {/* ✅ These routes must NOT be inside the "/" route's element */}
+  <Route path="/recipe/:id" element={<FoodDetails />} />
+  <Route path="/favorites" element={<Favorites />} />
+</Routes>
+</div>
+  )
 }
+
 
 //1 To create component on the right hand side of the application:
 //-Create a container component of type flex to put fooditem list on the left and another to receipt view

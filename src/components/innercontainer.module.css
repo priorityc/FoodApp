@@ -2,5 +2,9 @@
   /* //spann the inner cont equaly one by one */
   flex: 1;
   padding: 10px;
-  margin: 30px;
+  margin: 0;
+  min-width: 0;
+}
+.innerContainer .recipe-card {
+  width: 600px;
 }
