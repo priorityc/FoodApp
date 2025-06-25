@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';//include the router
 import { FavoritesProvider } from './context/FavoritesContext';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
 <FavoritesProvider>
 
   <React.StrictMode>

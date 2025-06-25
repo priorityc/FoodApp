@@ -17,7 +17,7 @@ const API_KEY = "2d9c01885882495eb47cc2575c918eec";
 // - setQuery(inputValue) happens only on Search button click
 
 //accept foodData and setFoodData as props from App.jsx state
-export default function Search({ foodData, setFoodData }) {
+export default function Search({ foodData, setFoodData, loading, setLoading }) {
   const [query, setQuery] = useState("pizza");
   //state for saving the food data
   const [inputValue, setInputValue]=useState("")
@@ -25,9 +25,9 @@ export default function Search({ foodData, setFoodData }) {
   const [selectedDiets, setSelectedDiets] = useState([]);
  
   //2.Smart Search Suggestions with Auto-complete 
-
-  //track suggested results based on the user’s typing
+//track suggested results based on the user’s typing
   const [suggestions, setSuggestions] = useState([]);
+  // add loading 
 
 
   async function fetchFood () {
@@ -47,10 +47,47 @@ export default function Search({ foodData, setFoodData }) {
       setFoodData(data.results);
   }
 
-  useEffect(() => {
+  // fetching food results inside a useEffect that runs every time query changes, which is triggered only when the user clicks the Search button. 
+  // useEffect(() => {
     
-     fetchFood();
-  }, [query]); 
+  //    fetchFood();
+  // }, [query]); 
+
+  //- If the user keeps typing, it cancels the last timeout and sets a new one — this is the debounce effect
+
+ useEffect(() => {
+  if (!inputValue.trim()) {
+    setFoodData([]); // Clear results if empty input
+    setLoading(false);
+    return;
+  }
+  setLoading(true); //start loading
+
+//- Wait 500ms before calling fetchFoodDebounced()
+//- If the user keeps typing, it cancels the last timeout and sets a new one — this is the debounce effect
+  const timeoutId = setTimeout(() => {
+    fetchFoodDebounced().finally(()=>setLoading(false));//stop loading after fetch
+  }, 500); // 500ms delay
+
+//- It clears the previous setTimeout() with clearTimeout() to prevent firing old requests
+  return () => clearTimeout(timeoutId);
+}, [inputValue, selectedDiets]); // Trigger on input and filters
+
+
+ //Handles the actual search results shown in the list/grid.async function fetchFoodDebounced() {
+ async function fetchFoodDebounced() {
+ 
+ const dietQuery = selectedDiets.join(",");
+  const url = `${URL}?query=${inputValue}&apiKey=${API_KEY}${dietQuery ? `&diet=${dietQuery}` : ""}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  setFoodData(data.results);
+}
+
+//That fetchSuggestions(query) function is doing something totally separate and useful: 
+// it powers autocomplete dropdown as the user types. It’s focused on suggesting recipe titles, not fetching the full results.
+//Handles the autocomplete list (e.g. “pizza”, “pita”, “pinto beans”) as the user types.
+//Think of fetchSuggestions as your app’s whisperer — helping users find the right query before they even finish typing.
 
   async function fetchSuggestions(query) {
   if (!query.trim()) {
@@ -139,6 +176,7 @@ function handleInputChange(e) {
   return (
   <form onSubmit={handleSearchClick}>
   <div className={styles.searchContainer}>
+    <div className={styles.inputWrapper}>
     <input
       className={styles.input}
       type="text"
@@ -166,7 +204,8 @@ function handleInputChange(e) {
     </li>
   ))}
 </ul>
-
+</div>
+{/* The filter  */}
     <div className={styles.filtersContainer}>
       {["vegetarian", "vegan", "ketogenic"].map((diet) => (
         <label key={diet} className={styles.checkboxLabel}>
@@ -191,4 +230,3 @@ function handleInputChange(e) {
     </form>
   );
 }
-

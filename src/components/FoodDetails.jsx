@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import styles from "./fooddetails.module.css";
 import ItemList from "./ItemList";
@@ -11,6 +12,8 @@ export default function FoodDetails({foodId }) {
   
 
 console.log("Recipe ID from URL:", id);
+
+const navigate =useNavigate();
 
 
   //create a state to save the information received from the API call
@@ -37,9 +40,19 @@ console.log("Recipe ID from URL:", id);
     fetchFoodDetails();
   }, [id]);
 
+  //use this function to navigate back one step in browser history
+  function handleBack() {
+  navigate(-1); // goes back one step in browser history
+}
+
+
   return (
     // The outer div
     <div>
+      <button onClick={handleBack} className={styles.backButton}>
+  ← Back
+</button>
+
       {/* div for recepi card */}
       <div className={styles.recipeCard}>
         {id}

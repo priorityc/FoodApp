@@ -5,22 +5,33 @@ import styles from "./foodlist.module.css";
 
 //accept foodData and setFoodId as props
 //List is going to render multiple items that is why we need to move single item in separate component Food Item
-export default function FoodList({ foodData, setFoodId }) {
+export default function FoodList({ foodData, setFoodId, loading, setLoading }) {
 
     const { addFavorite } = useContext(FavoritesContext);
 
   return (
-  <div>
-       <div className={styles.card}>
+ 
+      <div className={styles.card}>
         
             {/* When we use map to render multiple items always add key prop*/}
+{loading ? (
+  <p className={styles.loader}>Loading recipes...</p>
+) : foodData.length > 0 ? (
+  foodData.map((food) => (
+    <FoodItem
+      setFoodId={setFoodId}
+      key={food.id}
+      food={food}
+      addFavorite={addFavorite}
+    />
+  ))
+) : (
+  <p className={styles.noResults}>
+    No recipes found for that combo — try adjusting your search or removing some filters!
+  </p>
+)}
 
-      {foodData.map((food) => (
-        //include the food item in the list that will represent each item
-        //food={food} -pass parametar each food item as prop in Food Item
-        <FoodItem setFoodId={setFoodId} key={food.id} food={food} addFavorite={addFavorite}/>
-      ))}
-    </div>
-    </div>
-  );
+   </div>
+ 
+  )
 }

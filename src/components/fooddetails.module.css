@@ -34,3 +34,19 @@
 .recipeInstructions li {
   margin: 10px 0px;
 }
+
+/* Back button styling  */
+.backButton {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: #ca8d09;
+}
+

@@ -20,6 +20,7 @@ function App() {
   //we create state foodId in the App.js comp.
   //set the food id from receipts to the foodId state
   const [foodId, setFoodId] = useState("656329");
+    const [loading, setLoading] = useState(false);
 
   return (
     <div className="App">
@@ -29,10 +30,10 @@ function App() {
     path="/"
     element={
       <>
-        <Search foodData={foodData} setFoodData={setFoodData} />
+        <Search foodData={foodData} setFoodData={setFoodData} setLoading={setLoading} />
         <Container>
           <InnerContainer>
-            <FoodList setFoodId={setFoodId} foodData={foodData} />
+            <FoodList setFoodId={setFoodId} foodData={foodData} loading={loading} />
           </InnerContainer>
           <InnerContainer>
             <FoodDetails foodId={foodId} />
