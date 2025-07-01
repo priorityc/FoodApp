@@ -1,0 +1,48 @@
+
+/* .receiptCard {
+
+    border: "1px solid #eee";
+    border-radius: 8px;
+    overflow: "hidden";
+} */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* 📱 Mobile-first: 1 column by default */
+/* Tablet and up: Wrap into rows */
+@media (min-width: 600px) {
+  .section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.recipeCard {
+  background: #fff8f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%; /* Full width for mobile */
+  max-width: 400px;
+}
+
+/* On tablet and desktop: allow card wrapping */
+@media (min-width: 600px) {
+  .recipeCard {
+    flex: 1 1 45%;
+  }
+}
+
+@media (min-width: 900px) {
+  .recipeCard {
+    flex: 1 1 22%;
+    width: 60%;
+  }
+}

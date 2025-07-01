@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 
+import HomePage from './pages/Home'; // Adjust path if necessary
+
+
 import Search from "./components/Search";
 import FoodList from "./components/FoodList";
 import Nav from "./components/Nav";
@@ -25,9 +28,13 @@ function App() {
   return (
     <div className="App">
       <Nav />
-     <Routes>
+  
+
+ <Routes>
+  <Route path="/" element={<HomePage />} />
+
   <Route
-    path="/"
+    path="/search"
     element={
       <>
         <Search foodData={foodData} setFoodData={setFoodData} setLoading={setLoading} />
@@ -40,17 +47,16 @@ function App() {
           </InnerContainer>
         </Container>
       </>
-      
     }
   />
-  
-  {/* ✅ These routes must NOT be inside the "/" route's element */}
+
   <Route path="/recipe/:id" element={<FoodDetails />} />
   <Route path="/favorites" element={<Favorites />} />
 </Routes>
 </div>
   )
 }
+
 
 
 //1 To create component on the right hand side of the application:

@@ -27,7 +27,7 @@ export default function FoodList({ foodData, setFoodId, loading, setLoading }) {
   ))
 ) : (
   <p className={styles.noResults}>
-    No recipes found for that combo — try adjusting your search or removing some filters!
+    No recipes found please try adjusting your search or removing some filters!
   </p>
 )}
 

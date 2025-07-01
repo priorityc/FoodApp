@@ -1,0 +1,27 @@
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+}
+
+.shortcutsLink {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff4b2b;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.shortcutsLink:hover {
+  background-color: #e74326;
+  transform: translateY(-2px);
+}
+
+/* 📱 Responsive touch target & spacing */
+/* @media (max-width */

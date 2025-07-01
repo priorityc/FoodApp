@@ -1,8 +1,84 @@
-.nav {
-  font-size: 2em;
+/* .nav {
+  display: flex;
+  align-self: center;
+  justify-items: space-between;
+  font-size: 1.2em;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #393e46;
-  padding: 30px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 1rem 2rem;
+  background: #fff8f0;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ff4b2b;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.nav a:hover {
+  background-color: #ffe2d4;
+}
+.nav h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+} */
+
+.header {
+  width: 100%;
+  background-color: #fff8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.navLink {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ff4b2b;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: #ffe2d4;
+}
+
+/* 📱 Mobile responsiveness */
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .navLink {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
 }

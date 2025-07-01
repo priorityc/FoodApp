@@ -1,0 +1,17 @@
+.section {
+    text-align: center; 
+    padding: "2rem 1rem";
+ }
+/* Style for the search button */
+.heroButton {
+  padding: 0.6rem 1rem;
+  background-color: #ca8d09;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+   font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+   text-transform: uppercase;
+}
