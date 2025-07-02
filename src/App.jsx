@@ -1,7 +1,9 @@
+//Routhing set up component
 import { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 
-import HomePage from './pages/Home'; // Adjust path if necessary
+import HomePage from './pages/Home'; 
+import WeeklyPlanner from './pages/WeeklyPlaner'; 
 
 
 import Search from "./components/Search";
@@ -32,7 +34,7 @@ function App() {
 
  <Routes>
   <Route path="/" element={<HomePage />} />
-
+  <Route path="/planner" element={<WeeklyPlanner />} />
   <Route
     path="/search"
     element={

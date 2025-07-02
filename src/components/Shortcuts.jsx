@@ -6,8 +6,8 @@ export default function Shortcuts() {
   return (
     <section className={styles.section}>
       <Link to="/favorites" className={styles.shortcutsLink}>❤️ Favorites</Link>
-      <Link to="/browse" className={styles.shortcutsLink}>🔍 Browse Recipes</Link>
-      <Link to="/new" className={styles.shortcutsLink}>🆕 New</Link>
+      <Link to="/search" className={styles.shortcutsLink}>🔍 Browse Recipes</Link>
+      <Link to="/planner" className={styles.shortcutsLink}>🆕 Meal Planner</Link>
     </section>
   );
 }
